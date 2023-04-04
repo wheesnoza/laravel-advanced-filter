@@ -2,13 +2,17 @@
 
 namespace App\Enums;
 
-use App\Filter\VariantPriceFilter;
-use App\Filter\VariantProductNameFilter;
-use App\Filter\VariantRaitingFilter;
-use App\Filter\VariantSizeFilter;
+use App\Filters\VariantPriceFilter;
+use App\Filters\VariantPriceRangeFilters\VariantPriceGreaterThanEqualFilter;
+use App\Filters\VariantPriceRangeFilters\VariantPriceLowerThanEqualFilter;
+use App\Filters\VariantProductNameFilter;
+use App\Filters\VariantRaitingFilter;
+use App\Filters\VariantSizeFilter;
 
 enum VariantFilters: string
 {
+    case PriceGreaterThanEqual = 'gte:price';
+    case PriceLowerThanEqual = 'lte:price';
     case Price = 'price';
     case Size = 'size';
     case Raiting = 'raiting';
@@ -21,6 +25,8 @@ enum VariantFilters: string
             self::Size => new VariantSizeFilter($value),
             self::Raiting => new VariantRaitingFilter($value),
             self::Name => new VariantProductNameFilter($value),
+            self::PriceGreaterThanEqual => new VariantPriceGreaterThanEqualFilter($value),
+            self::PriceLowerThanEqual => new VariantPriceLowerThanEqualFilter($value),
         };
     }
 }

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Filter;
+namespace App\Filters\VariantPriceRangeFilters;
 
+use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
-class VariantPriceFilter extends Filter
+class VariantPriceLowerThanEqualFilter extends Filter
 {
     public function handle(Builder $query)
     {
