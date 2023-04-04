@@ -19,7 +19,7 @@ class ProductFactory extends Factory
         return [
             'name' => fake()->name(),
             'description' => fake()->text(),
-            'brand' => fake()->randomElement(['ASUS', 'Apple', 'Microsoft', 'IKEA']),
+            'brand' => fake()->randomElement(['GU', 'H&M', 'UNIQLO', '無印良品']),
         ];
     }
 }
