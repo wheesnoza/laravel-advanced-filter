@@ -4,13 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Actions\FilterVariantAction;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\GetProductsRequest;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index(GetProductsRequest $request)
     {
-        $filters = $request->collect('filter');
+        $filters = $request->filters();
 
         return FilterVariantAction::execute($filters);
     }

@@ -2,9 +2,9 @@
 
 namespace App\Enums;
 
-use App\Filter\Filter;
-use App\Filter\ProductPriceFilter;
-use App\Filter\ProductProviderFilter;
+use App\Filters\Filter;
+use App\Filters\ProductPriceFilter;
+use App\Filters\ProductProviderFilter;
 
 enum ProductFilters: string
 {
