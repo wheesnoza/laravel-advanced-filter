@@ -10,5 +10,5 @@ abstract class Filter
     {
     }
 
-    public abstract function handle(Builder $query);
+    abstract public function handle(Builder $query);
 }

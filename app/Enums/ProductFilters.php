@@ -3,7 +3,6 @@
 namespace App\Enums;
 
 use App\Filter\Filter;
-use App\Filter\ProductNameFilter;
 use App\Filter\ProductPriceFilter;
 use App\Filter\ProductProviderFilter;
 
