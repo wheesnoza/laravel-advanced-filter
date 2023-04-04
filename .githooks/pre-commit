@@ -5,7 +5,7 @@ phpFiles=$(echo "$fileList" | grep -E '\.(php)$')
 
 if [ ${#phpFiles} -gt 0 ]; then
   echo 'Start Linting with laravel/pint.'
-  docker compose exec -T app ./vendor/bin/pint ${phpFiles[*]} "$@"
+  docker-compose exec -T app ./vendor/bin/pint ${phpFiles[*]} "$@"
   if [ $? -gt 0 ]; then
     exit 1
   fi
