@@ -14,7 +14,7 @@ return new class () extends Migration {
             $table->id();
             $table->string('name');
             $table->text('description');
-            $table->string('provider');
+            $table->string('brand');
             $table->timestamps();
         });
     }
