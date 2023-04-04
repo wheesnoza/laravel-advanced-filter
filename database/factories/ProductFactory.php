@@ -17,7 +17,7 @@ class ProductFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->randomElement(['スウェット', 'Tシャツ', 'Yシャツ', 'ジャケット', 'デニムパンツ', 'スラックス']),
             'description' => fake()->text(),
             'brand' => fake()->randomElement(['GU', 'H&M', 'UNIQLO', '無印良品']),
         ];

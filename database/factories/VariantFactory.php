@@ -19,7 +19,7 @@ class VariantFactory extends Factory
         return [
             'price' => fake()->randomFloat(2, 1, 999999),
             'raiting' => fake()->randomFloat(1, 0.1, 5),
-            'color' => fake()->randomElement(['red', 'white', 'brown', 'black']),
+            'color' => fake()->colorName(),
             'size' => fake()->randomElement(['S', 'M', 'L', 'LL', 'XXL']),
         ];
     }
