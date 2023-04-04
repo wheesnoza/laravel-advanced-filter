@@ -3,8 +3,8 @@
 namespace App\Enums;
 
 use App\Filters\VariantPriceFilter;
-use App\Filters\VariantPriceRangeFilters\VariantPriceGreaterThanEqualFilter;
-use App\Filters\VariantPriceRangeFilters\VariantPriceLowerThanEqualFilter;
+use App\Filters\VariantPriceGreaterThanEqualFilter;
+use App\Filters\VariantPriceLowerThanEqualFilter;
 use App\Filters\VariantProductNameFilter;
 use App\Filters\VariantProductSizeInFilter;
 use App\Filters\VariantRaitingFilter;

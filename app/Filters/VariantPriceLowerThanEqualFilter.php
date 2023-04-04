@@ -1,8 +1,7 @@
 <?php
 
-namespace App\Filters\VariantPriceRangeFilters;
+namespace App\Filters;
 
-use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 
 class VariantPriceLowerThanEqualFilter extends Filter
