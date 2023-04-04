@@ -43,6 +43,8 @@ db:
 	docker-compose exec mysql mysql -u$(DB_USERNAME) -p$(DB_PASSWORD) $(DB_DATABASE)
 format:
 	docker-compose exec app ./vendor/bin/pint
+analyse:
+	docker-compose exec app ./vendor/bin/phpstan analyse
 .PHONY: pnpm
 ifeq (pnpm,$(firstword $(MAKECMDGOALS)))
   RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
