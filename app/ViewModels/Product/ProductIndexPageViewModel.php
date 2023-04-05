@@ -3,10 +3,14 @@
 namespace App\ViewModels\Product;
 
 use Illuminate\Database\Eloquent\Collection;
+use App\Models\Variant;
 
 class ProductIndexPageViewModel
 {
-    public static function render(Collection $products)
+    /**
+     * @param Collection|Variant[] $products
+     */
+    public static function render($products)
     {
         return [
             'products' => $products->map(function ($variant) {

@@ -2,16 +2,17 @@
 
 namespace App\Http\Controllers\Web\Product;
 
+use App\Actions\FilterVariantAction;
 use App\Http\Controllers\Controller;
-use App\Models\Variant;
+use App\Http\Requests\GetProductsRequest;
 use App\ViewModels\Product\ProductIndexPageViewModel;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(GetProductsRequest $request)
     {
-        $products = Variant::with('product')->get();
+        $products = FilterVariantAction::execute($request->filters());
 
         return Inertia::render('Product/Index', ProductIndexPageViewModel::render($products));
     }
