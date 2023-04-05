@@ -9,7 +9,10 @@ use Illuminate\Support\Collection;
 
 class FilterVariantAction
 {
-    public static function execute(Collection $filters): EloquentCollection
+    /**
+     * @return EloquentCollection|Variant[]
+     */
+    public static function execute(Collection $filters)
     {
         $query = Variant::with('product');
 
