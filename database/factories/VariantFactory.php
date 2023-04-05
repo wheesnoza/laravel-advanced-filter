@@ -17,7 +17,7 @@ class VariantFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => fake()->randomFloat(2, 1, 999999),
+            'price' => fake()->randomFloat(2, 3000, 50000),
             'raiting' => fake()->randomFloat(1, 0.1, 5),
             'color' => fake()->colorName(),
             'size' => fake()->randomElement(['S', 'M', 'L', 'LL', 'XXL']),

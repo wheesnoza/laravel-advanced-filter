@@ -4,11 +4,12 @@ namespace App\Actions;
 
 use App\Enums\VariantFilters;
 use App\Models\Variant;
+use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
 
 class FilterVariantAction
 {
-    public static function execute(Collection $filters)
+    public static function execute(Collection $filters): EloquentCollection
     {
         $query = Variant::with('product');
 
