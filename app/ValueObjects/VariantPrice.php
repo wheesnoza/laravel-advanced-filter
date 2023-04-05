@@ -10,11 +10,6 @@ class VariantPrice
     public function __construct(float $value)
     {
         $this->value = $value;
-
-        if ($value === null) {
-            $this->formatted = '';
-        } else {
-            $this->formatted = number_format($value) . '￥';
-        }
+        $this->formatted = number_format($value) . '￥';
     }
 }
