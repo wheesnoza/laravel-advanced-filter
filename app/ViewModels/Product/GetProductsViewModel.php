@@ -18,9 +18,22 @@ class GetProductsViewModel extends ViewModel
         $this->products = $products;
     }
 
+    public function popularProducts()
+    {
+        return $this->products
+            ->populars()
+            ->map($this->formatProduct());
+    }
+
     public function products()
     {
-        return $this->products->map(function ($variant) {
+        return $this->products
+            ->map($this->formatProduct());
+    }
+
+    private function formatProduct()
+    {
+        return function ($variant) {
             return [
                 'name' => $variant->product->name,
                 'brand' => $variant->product->brand,
@@ -29,6 +42,6 @@ class GetProductsViewModel extends ViewModel
                 'color' => $variant->color,
                 'size' => $variant->size
             ];
-        });
+        };
     }
 }
