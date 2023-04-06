@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Product;
 
-use App\Enums\VariantFilters;
 use App\Models\Variant;
 use App\Sorters\Sorter;
 use Illuminate\Support\Collection;
 use App\Collections\Product\ProductCollection;
+use App\Enums\Product\ProductFilters;
 
-class FilterVariantAction
+class FilterProductAction
 {
     /**
      * @return ProductCollection|Variant[]
@@ -18,7 +18,7 @@ class FilterVariantAction
         $query = Variant::with('product');
 
         foreach ($filters as $name => $value) {
-            if ($filter = VariantFilters::tryFrom($name)) {
+            if ($filter = ProductFilters::tryFrom($name)) {
                 $filter = $filter->createFilter($value);
 
                 $filter->handle($query);

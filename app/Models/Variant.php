@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Casts\VariantPrice;
+use App\Casts\Variant\VariantPriceCast;
 use App\Collections\Product\ProductCollection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +13,7 @@ class Variant extends Model
     use HasFactory;
 
     protected $casts = [
-        'price' => VariantPrice::class,
+        'price' => VariantPriceCast::class,
     ];
 
     public function product(): BelongsTo

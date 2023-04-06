@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Filters;
+namespace App\Filters\Product;
 
 use Illuminate\Database\Eloquent\Builder;
+use App\Filters\Filter;
 
-class VariantProductSizeInFilter extends Filter
+class ProductSizeInFilter extends Filter
 {
     public function handle(Builder $query): void
     {

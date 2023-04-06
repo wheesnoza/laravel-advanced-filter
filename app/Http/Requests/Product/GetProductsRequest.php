@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
-use App\Enums\ProductSorters;
+use App\Enums\Product\ProductSorters;
 use App\Enums\SortDirections;
 use App\Sorters\Sorter;
 use Illuminate\Foundation\Http\FormRequest;

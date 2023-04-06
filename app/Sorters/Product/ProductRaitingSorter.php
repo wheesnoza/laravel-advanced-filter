@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Sorters;
+namespace App\Sorters\Product;
 
+use App\Sorters\Sorter;
 use Illuminate\Database\Eloquent\Builder;
 
 class ProductRaitingSorter extends Sorter

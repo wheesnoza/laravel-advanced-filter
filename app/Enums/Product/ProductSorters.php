@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Enums;
+namespace App\Enums\Product;
 
-use App\Sorters\ProductPriceSorter;
-use App\Sorters\ProductRaitingSorter;
+use App\Enums\SortDirections;
+use App\Sorters\Product\ProductPriceSorter;
+use App\Sorters\Product\ProductRaitingSorter;
 use App\Sorters\Sorter;
 
 enum ProductSorters: string

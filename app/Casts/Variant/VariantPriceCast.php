@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Casts;
+namespace App\Casts\Variant;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 use Illuminate\Database\Eloquent\Model;
-use App\ValueObjects\VariantPrice as VariantPriceValueObject;
+use App\ValueObjects\Product\VariantPrice as VariantPriceValueObject;
 
-class VariantPrice implements CastsAttributes
+class VariantPriceCast implements CastsAttributes
 {
     /**
      * @param array<string,mixed> $attributes
