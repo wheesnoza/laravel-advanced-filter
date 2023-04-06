@@ -12,9 +12,14 @@ class ProductController extends Controller
 {
     public function index(GetProductsRequest $request)
     {
-        $products = FilterVariantAction::execute($request->filters());
-        $viewModel = new GetProductsViewModel($products);
+        $products = FilterVariantAction::execute(
+            $request->filters(),
+            $request->sorter()
+        );
 
-        return Inertia::render('Product/Index', $viewModel);
+        return Inertia::render(
+            'Product/Index',
+            new GetProductsViewModel($products)
+        );
     }
 }

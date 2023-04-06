@@ -9,7 +9,7 @@ class ProductCollection extends Collection
     public function populars()
     {
         return $this
-            ->sortBy('raiting')
+            ->sortByDesc('raiting')
             ->take(5)
             ->values();
     }
