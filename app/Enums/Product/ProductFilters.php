@@ -12,7 +12,6 @@ use App\Filters\Product\ProductRaitingFilter;
 
 enum ProductFilters: string
 {
-    case Price = 'price';
     case Name = 'name';
     case Raiting = 'raiting';
     case Brand = 'brand';
