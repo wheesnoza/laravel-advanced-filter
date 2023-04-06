@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Enums\ProductSorters;
 use App\Enums\SortDirections;
+use App\Sorters\Sorter;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Collection;
 
@@ -14,6 +15,9 @@ class GetProductsRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<string>
+     */
     public function rules(): array
     {
         return [];
@@ -24,7 +28,7 @@ class GetProductsRequest extends FormRequest
         return $this->collect('filter');
     }
 
-    public function sorter()
+    public function sorter(): Sorter
     {
         return $this
             ->sortBy()

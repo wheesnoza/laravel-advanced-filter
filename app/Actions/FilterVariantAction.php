@@ -5,13 +5,13 @@ namespace App\Actions;
 use App\Enums\VariantFilters;
 use App\Models\Variant;
 use App\Sorters\Sorter;
-use Illuminate\Database\Eloquent\Collection as EloquentCollection;
 use Illuminate\Support\Collection;
+use App\Collections\Product\ProductCollection;
 
 class FilterVariantAction
 {
     /**
-     * @return EloquentCollection|Variant[]
+     * @return ProductCollection|Variant[]
      */
     public static function execute(Collection $filters, ?Sorter $sorter = null)
     {

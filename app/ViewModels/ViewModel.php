@@ -10,6 +10,9 @@ use Illuminate\Support\Str;
 
 class ViewModel implements Arrayable
 {
+    /**
+     * @var array<string> $reserved
+     */
     protected array $reserved = [];
 
     public function toArray()

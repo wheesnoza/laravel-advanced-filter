@@ -11,5 +11,5 @@ abstract class Sorter
     {
     }
 
-    abstract public function handle(Builder $query);
+    abstract public function handle(Builder $query): void;
 }

@@ -2,6 +2,7 @@
 
 namespace App\Enums;
 
+use App\Filters\Filter;
 use App\Filters\VariantPriceFilter;
 use App\Filters\VariantPriceGreaterThanEqualFilter;
 use App\Filters\VariantPriceLowerThanEqualFilter;
@@ -20,7 +21,7 @@ enum VariantFilters: string
     case PriceLowerThanEqual = 'price:lte';
     case SizeIn = 'size:in';
 
-    public function createFilter($value)
+    public function createFilter(mixed $value): Filter
     {
         return match ($this) {
             self::Price => new VariantPriceFilter($value),

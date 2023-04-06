@@ -7,10 +7,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GetProductsRequest;
 use App\ViewModels\Product\GetProductsViewModel;
 use Inertia\Inertia;
+use Inertia\Response;
 
 class ProductController extends Controller
 {
-    public function index(GetProductsRequest $request)
+    public function index(GetProductsRequest $request): Response
     {
         $products = FilterVariantAction::execute(
             $request->filters(),

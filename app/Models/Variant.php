@@ -21,7 +21,12 @@ class Variant extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function newCollection(array $models = [])
+    /**
+     * @param array<int, Variant> $models
+     *
+     * @return ProductCollection<Variant>
+     */
+    public function newCollection(array $models = []): ProductCollection
     {
         return new ProductCollection($models);
     }

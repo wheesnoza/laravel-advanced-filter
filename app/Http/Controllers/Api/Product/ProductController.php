@@ -9,7 +9,7 @@ use App\ViewModels\Product\GetProductsViewModel;
 
 class ProductController extends Controller
 {
-    public function index(GetProductsRequest $request)
+    public function index(GetProductsRequest $request): GetProductsViewModel
     {
         $products = FilterVariantAction::execute(
             $request->filters(),
