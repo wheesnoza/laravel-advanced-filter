@@ -20,6 +20,7 @@ class ProductFactory extends Factory
             'name' => fake()->randomElement(['スウェット', 'Tシャツ', 'Yシャツ', 'ジャケット', 'デニムパンツ', 'スラックス']),
             'description' => fake()->text(),
             'brand' => fake()->randomElement(['GU', 'H&M', 'UNIQLO', '無印良品']),
+            'free_shipping' => fake()->boolean(),
         ];
     }
 }

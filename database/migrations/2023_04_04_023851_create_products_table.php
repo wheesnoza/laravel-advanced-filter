@@ -15,6 +15,7 @@ return new class () extends Migration {
             $table->string('name');
             $table->text('description');
             $table->string('brand');
+            $table->boolean('free_shipping');
             $table->timestamps();
         });
     }
