@@ -15,17 +15,24 @@ class GetProductsViewModel extends ViewModel
     private $products;
 
     /**
-     * @param ProductCollection|Variant[] $products
+     * @var ProductCollection|Variant[] $    private $popularProducts;
+
      */
-    public function __construct($products)
+    private $popularProducts;
+
+    /**
+     * @param ProductCollection|Variant[] $products
+     * @param ProductCollection|Variant[] $popularProducts
+     */
+    public function __construct($products, $popularProducts)
     {
         $this->products = $products;
+        $this->popularProducts = $popularProducts;
     }
 
     public function popularProducts(): Collection
     {
-        return $this->products
-            ->populars()
+        return $this->popularProducts
             ->map($this->formatProduct());
     }
 
@@ -44,7 +51,8 @@ class GetProductsViewModel extends ViewModel
                 'price' => $variant->price,
                 'raiting' => $variant->raiting,
                 'color' => $variant->color,
-                'size' => $variant->size
+                'size' => $variant->size,
+                'free_shipping' => $variant->product->free_shipping,
             ];
         };
     }
