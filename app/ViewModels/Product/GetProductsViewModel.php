@@ -2,44 +2,51 @@
 
 namespace App\ViewModels\Product;
 
-use App\Collections\Product\ProductCollection;
+use App\Enums\Product\ProductFilters;
 use App\Models\Variant;
 use App\ViewModels\ViewModel;
 use Illuminate\Support\Collection;
 
 class GetProductsViewModel extends ViewModel
 {
-    /**
-     * @var ProductCollection|Variant[] $products
-     */
+    public const PER_PAGE = 15;
+
     private $products;
 
-    /**
-     * @var ProductCollection|Variant[] $    private $popularProducts;
-
-     */
-    private $popularProducts;
-
-    /**
-     * @param ProductCollection|Variant[] $products
-     * @param ProductCollection|Variant[] $popularProducts
-     */
-    public function __construct($products, $popularProducts)
+    public function __construct(Collection $filters)
     {
-        $this->products = $products;
-        $this->popularProducts = $popularProducts;
+        $query = Variant::with('product');
+
+        foreach ($filters as $name => $value) {
+            if ($filter = ProductFilters::tryFrom($name)) {
+                $filter = $filter->createFilter($value);
+
+                $filter->handle($query);
+            }
+        }
+
+        $this->products = $query->paginate(self::PER_PAGE);
     }
 
     public function popularProducts(): Collection
     {
-        return $this->popularProducts
+        return Variant::with('product')
+            ->orderByDesc('raiting')
+            ->limit(5)
+            ->get()
             ->map($this->formatProduct());
     }
 
     public function products(): Collection
     {
         return $this->products
+            ->collect()
             ->map($this->formatProduct());
+    }
+
+    public function pagination()
+    {
+        return collect($this->products)->except('data');
     }
 
     private function formatProduct(): callable
