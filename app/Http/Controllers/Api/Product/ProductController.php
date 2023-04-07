@@ -8,8 +8,12 @@ use App\ViewModels\Product\GetProductsViewModel;
 
 class ProductController extends Controller
 {
-    public function index(GetProductsRequest $request)
+    public function index(GetProductsRequest $request): GetProductsViewModel
     {
-        return new GetProductsViewModel($request->filters());
+        $viewModel = new GetProductsViewModel($request->filters());
+
+        $viewModel->excludePaginationLinks();
+
+        return $viewModel;
     }
 }

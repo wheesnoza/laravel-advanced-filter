@@ -5,13 +5,19 @@ namespace App\ViewModels\Product;
 use App\Enums\Product\ProductFilters;
 use App\Models\Variant;
 use App\ViewModels\ViewModel;
+use App\ViewModels\WithPagination;
 use Illuminate\Support\Collection;
 
 class GetProductsViewModel extends ViewModel
 {
-    public const PER_PAGE = 15;
+    use WithPagination;
 
+    /**
+     * @var Collection|Variant[]
+     */
     private $products;
+
+    protected array $reserved = ['excludePaginationLinks'];
 
     public function __construct(Collection $filters)
     {
@@ -25,7 +31,8 @@ class GetProductsViewModel extends ViewModel
             }
         }
 
-        $this->products = $query->paginate(self::PER_PAGE);
+        $this->paginator = $query->paginate(self::PER_PAGE);
+        $this->products = $this->paginator->collect();
     }
 
     public function popularProducts(): Collection
@@ -40,13 +47,7 @@ class GetProductsViewModel extends ViewModel
     public function products(): Collection
     {
         return $this->products
-            ->collect()
             ->map($this->formatProduct());
-    }
-
-    public function pagination()
-    {
-        return collect($this->products)->except('data');
     }
 
     private function formatProduct(): callable
@@ -62,5 +63,12 @@ class GetProductsViewModel extends ViewModel
                 'free_shipping' => $variant->product->free_shipping,
             ];
         };
+    }
+
+    public function excludePaginationLinks(): GetProductsViewModel
+    {
+        $this->reserved[] = 'links';
+
+        return $this;
     }
 }
