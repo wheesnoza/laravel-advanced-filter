@@ -10,7 +10,10 @@ class ProductController extends Controller
 {
     public function index(GetProductsRequest $request): GetProductsViewModel
     {
-        $viewModel = new GetProductsViewModel($request->filters());
+        $viewModel = new GetProductsViewModel(
+            $request->filters(),
+            $request->sorter()
+        );
 
         $viewModel->excludePaginationLinks();
 

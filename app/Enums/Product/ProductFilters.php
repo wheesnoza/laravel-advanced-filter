@@ -23,7 +23,7 @@ enum ProductFilters: string
     case SizeIn = 'size:in';
     case FreeShipping = 'free_shipping';
 
-    public function createFilter(mixed $value): Filter
+    public function create(mixed $value): Filter
     {
         return match ($this) {
             self::Name => new ProductNameFilter($value),

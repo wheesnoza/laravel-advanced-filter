@@ -4,6 +4,7 @@ namespace App\ViewModels\Product;
 
 use App\Collections\FilterCollection;
 use App\Models\Variant;
+use App\Sorters\Sorter;
 use App\ViewModels\ViewModel;
 use App\ViewModels\WithPagination;
 use Illuminate\Support\Collection;
@@ -11,6 +12,8 @@ use Illuminate\Support\Collection;
 class GetProductsViewModel extends ViewModel
 {
     use WithPagination;
+
+    protected const PER_PAGE = 15;
 
     /**
      * @var Collection|Variant[]
@@ -22,11 +25,11 @@ class GetProductsViewModel extends ViewModel
      */
     protected array $reserved = ['excludePaginationLinks'];
 
-    public function __construct(FilterCollection $filters)
+    public function __construct(FilterCollection $filters, ?Sorter $sorter)
     {
         $query = Variant::with('product');
-
-        $filters->perform($query);
+        $filters->handle($query);
+        $sorter->handle($query);
 
         $this->paginator = $query->paginate(self::PER_PAGE);
         $this->products = $this->paginator->collect();

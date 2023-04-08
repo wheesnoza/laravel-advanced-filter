@@ -20,12 +20,12 @@ class FilterCollection extends Collection
     public function __construct($items = [])
     {
         $this->items = collect($items)
-            ->map(fn ($value, $name) => ProductFilters::tryFrom($name)?->createFilter($value))
+            ->map(fn ($value, $name) => ProductFilters::tryFrom($name)?->create($value))
             ->filter()
             ->all();
     }
 
-    public function perform(Builder $query): void
+    public function handle(Builder $query): void
     {
         $this->each(fn ($filter) => $filter->handle($query));
     }

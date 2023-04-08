@@ -7,8 +7,6 @@ use Illuminate\Support\Collection;
 
 trait WithPagination
 {
-    protected const PER_PAGE = 15;
-
     protected LengthAwarePaginator $paginator;
 
     public function currentPage(): int
