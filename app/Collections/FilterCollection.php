@@ -5,7 +5,7 @@ namespace App\Collections;
 use App\Enums\Product\ProductFilters;
 use App\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Collection;
 
 class FilterCollection extends Collection
 {
