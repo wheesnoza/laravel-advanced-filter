@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Product;
 
+use App\Collections\FilterCollection;
 use App\Enums\Product\ProductSorters;
 use App\Enums\SortDirections;
 use App\Sorters\Sorter;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Collection;
 
 class GetProductsRequest extends FormRequest
 {
@@ -23,9 +23,9 @@ class GetProductsRequest extends FormRequest
         return [];
     }
 
-    public function filters(): Collection
+    public function filters(): FilterCollection
     {
-        return $this->collect('filter');
+        return new FilterCollection($this->filter);
     }
 
     public function sorter(): Sorter
