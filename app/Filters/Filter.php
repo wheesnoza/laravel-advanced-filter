@@ -6,8 +6,11 @@ use Illuminate\Database\Eloquent\Builder;
 
 abstract class Filter
 {
-    public function __construct(protected readonly mixed $value)
+    protected readonly mixed $value;
+
+    public function __construct(FilterValue|string|int|float $value)
     {
+        $this->value = $value instanceof FilterValue ? $value->handle() : $value;
     }
 
     abstract public function handle(Builder $query): void;
