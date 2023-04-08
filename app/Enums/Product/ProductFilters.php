@@ -6,7 +6,6 @@ use App\Filters\Filter;
 use App\Filters\Product\ProductPriceGreaterThanEqualFilter;
 use App\Filters\Product\ProductPriceLowerThanEqualFilter;
 use App\Filters\Product\ProductBrandFilter;
-use App\Filters\Product\ProductFreeShippingFilter;
 use App\Filters\Product\ProductNameFilter;
 use App\Filters\Product\ProductSizeInFilter;
 use App\Filters\Product\ProductRaitingFilter;
@@ -19,7 +18,6 @@ enum ProductFilters: string
     case PriceGreaterThanEqual = 'price:gte';
     case PriceLowerThanEqual = 'price:lte';
     case SizeIn = 'size:in';
-    case FreeShipping = 'free_shipping';
 
     public function createFilter(mixed $value): Filter
     {
@@ -30,7 +28,6 @@ enum ProductFilters: string
             self::PriceGreaterThanEqual => new ProductPriceGreaterThanEqualFilter($value),
             self::PriceLowerThanEqual => new ProductPriceLowerThanEqualFilter($value),
             self::SizeIn => new ProductSizeInFilter($value),
-            self::FreeShipping => new ProductFreeShippingFilter($value),
         };
     }
 }
