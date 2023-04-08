@@ -10,6 +10,10 @@ class Product extends Model
 {
     use HasFactory;
 
+    protected $casts =[
+        'free_shipping' => 'boolean'
+    ];
+
     public function variants(): HasMany
     {
         return $this->hasMany(Variant::class);
