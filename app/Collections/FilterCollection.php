@@ -27,6 +27,6 @@ class FilterCollection extends Collection
 
     public function perform(Builder $query): void
     {
-        $this->each->handle($query);
+        $this->each(fn ($filter) => $filter->handle($query));
     }
 }
