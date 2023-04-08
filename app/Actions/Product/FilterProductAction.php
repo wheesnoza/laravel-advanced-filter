@@ -19,7 +19,7 @@ class FilterProductAction
 
         foreach ($filters as $name => $value) {
             if ($filter = ProductFilters::tryFrom($name)) {
-                $filter = $filter->createFilter($value);
+                $filter = $filter->create($value);
 
                 $filter->handle($query);
             }

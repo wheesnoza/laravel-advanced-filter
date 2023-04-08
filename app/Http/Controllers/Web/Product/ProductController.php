@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         return Inertia::render(
             'Product/Index',
-            new GetProductsViewModel($request->filters())
+            new GetProductsViewModel($request->filters(), $request->sorter())
         );
     }
 }
