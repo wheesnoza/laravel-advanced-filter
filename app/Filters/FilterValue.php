@@ -8,5 +8,5 @@ abstract class FilterValue
     {
     }
 
-    abstract public function handle();
+    abstract public function handle(): mixed;
 }
