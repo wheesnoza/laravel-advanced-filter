@@ -31,12 +31,12 @@ trait WithPagination
         return $this->paginator->previousPageUrl();
     }
 
-    public function from(): int
+    public function from(): ?int
     {
         return $this->paginator->firstItem();
     }
 
-    public function to(): int
+    public function to(): ?int
     {
         return $this->paginator->lastItem();
     }
@@ -44,5 +44,10 @@ trait WithPagination
     public function links(): Collection
     {
         return $this->paginator->linkCollection();
+    }
+
+    public function perPage(): int
+    {
+        return $this->paginator->perPage();
     }
 }

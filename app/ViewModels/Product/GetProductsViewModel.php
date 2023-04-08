@@ -17,6 +17,9 @@ class GetProductsViewModel extends ViewModel
      */
     private $products;
 
+    /**
+     * @var array<string>
+     */
     protected array $reserved = ['excludePaginationLinks'];
 
     public function __construct(Collection $filters)
