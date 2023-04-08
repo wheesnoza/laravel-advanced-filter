@@ -9,6 +9,6 @@ class ProductSizeInFilter extends Filter
 {
     public function handle(Builder $query): void
     {
-        $query->whereIn('size', explode(',', $this->value));
+        $query->whereIn('size', $this->value);
     }
 }

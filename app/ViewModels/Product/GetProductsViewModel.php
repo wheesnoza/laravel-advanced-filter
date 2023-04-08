@@ -2,7 +2,7 @@
 
 namespace App\ViewModels\Product;
 
-use App\Enums\Product\ProductFilters;
+use App\Collections\FilterCollection;
 use App\Models\Variant;
 use App\ViewModels\ViewModel;
 use App\ViewModels\WithPagination;
@@ -22,17 +22,11 @@ class GetProductsViewModel extends ViewModel
      */
     protected array $reserved = ['excludePaginationLinks'];
 
-    public function __construct(Collection $filters)
+    public function __construct(FilterCollection $filters)
     {
         $query = Variant::with('product');
 
-        foreach ($filters as $name => $value) {
-            if ($filter = ProductFilters::tryFrom($name)) {
-                $filter = $filter->createFilter($value);
-
-                $filter->handle($query);
-            }
-        }
+        $filters->perform($query);
 
         $this->paginator = $query->paginate(self::PER_PAGE);
         $this->products = $this->paginator->collect();

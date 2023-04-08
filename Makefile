@@ -44,7 +44,7 @@ db:
 format:
 	docker-compose exec app ./vendor/bin/pint
 analyse:
-	docker-compose exec app ./vendor/bin/phpstan analyse
+	docker-compose exec app ./vendor/bin/phpstan analyse --memory-limit=-1
 .PHONY: pnpm
 ifeq (pnpm,$(firstword $(MAKECMDGOALS)))
   RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
