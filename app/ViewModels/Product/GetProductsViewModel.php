@@ -2,37 +2,48 @@
 
 namespace App\ViewModels\Product;
 
-use App\Collections\Product\ProductCollection;
+use App\Enums\Product\ProductFilters;
 use App\Models\Variant;
 use App\ViewModels\ViewModel;
+use App\ViewModels\WithPagination;
 use Illuminate\Support\Collection;
 
 class GetProductsViewModel extends ViewModel
 {
+    use WithPagination;
+
     /**
-     * @var ProductCollection|Variant[] $products
+     * @var Collection|Variant[]
      */
     private $products;
 
     /**
-     * @var ProductCollection|Variant[] $    private $popularProducts;
-
+     * @var array<string>
      */
-    private $popularProducts;
+    protected array $reserved = ['excludePaginationLinks'];
 
-    /**
-     * @param ProductCollection|Variant[] $products
-     * @param ProductCollection|Variant[] $popularProducts
-     */
-    public function __construct($products, $popularProducts)
+    public function __construct(Collection $filters)
     {
-        $this->products = $products;
-        $this->popularProducts = $popularProducts;
+        $query = Variant::with('product');
+
+        foreach ($filters as $name => $value) {
+            if ($filter = ProductFilters::tryFrom($name)) {
+                $filter = $filter->createFilter($value);
+
+                $filter->handle($query);
+            }
+        }
+
+        $this->paginator = $query->paginate(self::PER_PAGE);
+        $this->products = $this->paginator->collect();
     }
 
     public function popularProducts(): Collection
     {
-        return $this->popularProducts
+        return Variant::with('product')
+            ->orderByDesc('raiting')
+            ->limit(5)
+            ->get()
             ->map($this->formatProduct());
     }
 
@@ -55,5 +66,12 @@ class GetProductsViewModel extends ViewModel
                 'free_shipping' => $variant->product->free_shipping,
             ];
         };
+    }
+
+    public function excludePaginationLinks(): GetProductsViewModel
+    {
+        $this->reserved[] = 'links';
+
+        return $this;
     }
 }
