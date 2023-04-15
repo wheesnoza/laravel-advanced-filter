@@ -4,7 +4,7 @@ namespace App\Filters;
 
 abstract class FilterValue
 {
-    public function __construct(protected readonly mixed $value)
+    public function __construct(public readonly mixed $value)
     {
     }
 

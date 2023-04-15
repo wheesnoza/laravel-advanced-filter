@@ -2,8 +2,6 @@
 
 namespace App\Enums\Product;
 
-use App\Filters\ArrayFilterValue;
-use App\Filters\BooleanFilterValue;
 use App\Filters\Filter;
 use App\Filters\Product\ProductPriceGreaterThanEqualFilter;
 use App\Filters\Product\ProductPriceLowerThanEqualFilter;
@@ -21,9 +19,9 @@ enum ProductFilters: string
     case PriceGreaterThanEqual = 'price:gte';
     case PriceLowerThanEqual = 'price:lte';
     case SizeIn = 'size:in';
-    case FreeShipping = 'free_shipping';
+    case FreeShipping = 'free_shipping:is';
 
-    public function create(mixed $value): Filter
+    public function create($value): Filter
     {
         return match ($this) {
             self::Name => new ProductNameFilter($value),
@@ -31,8 +29,8 @@ enum ProductFilters: string
             self::Brand => new ProductBrandFilter($value),
             self::PriceGreaterThanEqual => new ProductPriceGreaterThanEqualFilter($value),
             self::PriceLowerThanEqual => new ProductPriceLowerThanEqualFilter($value),
-            self::SizeIn => new ProductSizeInFilter(new ArrayFilterValue($value)),
-            self::FreeShipping => new ProductFreeShippingFilter(new BooleanFilterValue($value)),
+            self::SizeIn => new ProductSizeInFilter($value),
+            self::FreeShipping => new ProductFreeShippingFilter($value),
         };
     }
 }
