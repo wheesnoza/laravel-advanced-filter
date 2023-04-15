@@ -2,18 +2,10 @@
 
 namespace App\Filters;
 
-use Stringable;
-use Illuminate\Support\Arr;
-
-class ArrayFilterValue extends FilterValue implements Stringable
+class ArrayFilterValue extends FilterValue
 {
-    public function handle(): mixed
+    public function cast(): mixed
     {
         return explode(',', $this->value);
-    }
-
-    public function __toString()
-    {
-        return Arr::join($this->value, ',');
     }
 }

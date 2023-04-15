@@ -10,7 +10,7 @@ abstract class Filter
 
     public function __construct(mixed $value)
     {
-        $this->value = $value instanceof FilterValue ? $value->handle() : $value;
+        $this->value = $value instanceof FilterValue ? $value->cast() : $value;
     }
 
     abstract public function handle(Builder $query): void;
