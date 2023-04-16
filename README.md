@@ -65,3 +65,4 @@ And many others filter options.
 - Brand
 - Raiting
 - Size range
+- Free shipping
