@@ -3,6 +3,7 @@
 namespace App\Enums\Product;
 
 use App\Filters\Filter;
+use App\Filters\FilterValue;
 use App\Filters\Product\ProductPriceGreaterThanEqualFilter;
 use App\Filters\Product\ProductPriceLowerThanEqualFilter;
 use App\Filters\Product\ProductBrandFilter;
@@ -21,7 +22,7 @@ enum ProductFilters: string
     case SizeIn = 'size:in';
     case FreeShipping = 'free_shipping:is';
 
-    public function create(mixed $value): Filter
+    public function create(FilterValue|string|int|float $value): Filter
     {
         return match ($this) {
             self::Name => new ProductNameFilter($value),
