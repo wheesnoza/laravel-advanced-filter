@@ -9,6 +9,7 @@ const Product: React.FC<Product> = (data) => {
         <p>サイズ: {data.size}</p>
         <p>価格: {data.price.formatted}</p>
         <p>評価: {data.raiting}</p>
+        <p>送料: {data.free_shipping ? '送料無料' : '送料有料'}</p>
     </>
 }
 

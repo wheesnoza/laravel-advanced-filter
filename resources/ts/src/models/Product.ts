@@ -8,5 +8,6 @@ export default interface Product {
     },
     raiting: number,
     color: string,
-    size: string
+    size: string,
+    free_shipping: boolean
 } 
